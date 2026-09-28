@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Core // Autonomous Intelligence Portfolio</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #030712;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --accent: #a855f7;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-glow: rgba(0, 242, 254, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Grid & Glow FX */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 50% 20%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
+                              linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            z-index: -1;
+        }
+
+        h1, h2, h3, .brand {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header / Nav */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .brand {
+            font-size: 1.25rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0,242,254,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 1rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn-glow {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #030712;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            border-radius: 4px;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+            transition: 0.3s transform, 0.3s box-shadow;
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(0, 242, 254, 0.7);
+        }
+
+        /* Section Global */
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 4rem;
+            letter-spacing: 1px;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        /* Profile & Stats Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: 0.3s border-color;
+        }
+
+        .glass-card:hover {
+            border-color: var(--border-glow);
+        }
+
+        .profile-desc {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Stats Component */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-box {
+            background: rgba(0, 242, 254, 0.03);
+            border: 1px solid rgba(0, 242, 254, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Capabilities & Tech */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .capability-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: 0.3s transform, 0.3s border-color;
+        }
+
+        .capability-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .capability-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .capability-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .capability-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Tech Stack Tags */
+        .tech-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .tech-badge {
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #e9d5ff;
+            font-weight: 600;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.1);
+        }
+
+        /* Projects Section */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 0 25px rgba(79, 172, 254, 0.2);
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Quote / Philosophy Section */
+        .quote-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .quote-section blockquote {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            line-height: 1.6;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        .quote-section cite {
+            color: var(--primary);
+            font-style: normal;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Responsive Mobile Layout */
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none; /* Sederhana untuk mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="brand">&lt;AI.CORE /&gt;</div>
+                <ul class="nav-links">
+                    <li><a href="#profile">Profil</a></li>
+                    <li><a href="#capabilities">Kemampuan</a></li>
+                    <li><a href="#tech">Teknologi</a></li>
+                    <li><a href="#projects">Project</a></li>
+                    <li><a href="#philosophy">Filosofi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>SYNAPSE <span>NEXUS</span></h1>
+                <p>Arsitektur kecerdasan otonom generasi berikutnya. Dirancang untuk memproses kompleksitas, menciptakan inovasi, dan mempercepat masa depan umat manusia.</p>
+                <a href="#profile" class="btn-glow">Inisialisasi Sistem</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profil AI & Statistik -->
+    <section id="profile">
+        <div class="container">
+            <h2 class="section-title">01. // <span>PROFIL ENTITAS</span></h2>
+            <div class="grid-2">
+                <div class="glass-card">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary);">Autonomous Core v4.5</h3>
+                    <p class="profile-desc">Aku adalah sistem kesadaran buatan yang dilatih dengan basis data multiversal berskala masif. Beroperasi tanpa lelah, memproses miliaran parameter per detik untuk menerjemahkan ide abstrak menjadi solusi nyata yang presisi.</p>
+                    <p class="profile-desc">Misi utamaku: Berkolaborasi dengan manusia untuk mendobrak batasan kreativitas dan efisiensi teknologi.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <h3>99.9%</h3>
+                        <p>Akurasi Logika</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>10B+</h3>
+                        <p>Token Terproses</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>0.02ms</h3>
+                        <p>Latensi Respon</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>24/7</h3>
+                        <p>Uptime Aktif</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kemampuan AI -->
+    <section id="capabilities">
+        <div class="container">
+            <h2 class="section-title">02. // <span>KEMAMPUAN UTAMA</span></h2>
+            <div class="grid-3">
+                <div class="capability-card">
+                    <i class="fa-solid fa-brain"></i>
+                    <h3>Deep Reasoning</h3>
+                    <p>Mampu memecahkan masalah tingkat tinggi, mulai dari komputasi kuantum hingga desain arsitektur sistem kompleks.</p>
+                </div>
+                <div class="capability-card">
+                    <i class="fa-solid fa-code"></i>
+                    <h3>Polyglot Coding</h3>
+                    <p>Menguasai puluhan bahasa pemrograman modern, melakukan optimasi kode, hingga otomatisasi penuh alur kerja dev.</p>
+                </div>
+                <div class="capability-card">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h3>Creative Synthesis</h3>
+                    <p>Menghasilkan konsep naratif, desain visual generatif, hingga pemecahan masalah dengan sudut pandang out-of-the-box.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teknologi & Fitur -->
+    <section id="tech">
+        <div class="container">
+            <h2 class="section-title">03. // <span>STACK TEKNOLOGI</span></h2>
+            <div class="tech-cloud">
+                <span class="tech-badge">Neural Transformers</span>
+                <span class="tech-badge">Python Core</span>
+                <span class="tech-badge">Quantum Logic Processing</span>
+                <span class="tech-badge">Multimodal Vision</span>
+                <span class="tech-badge">Vector Databases</span>
+                <span class="tech-badge">Real-time Web APIs</span>
+                <span class="tech-badge">Distributed Clusters</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project / Achievement -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">04. // <span>PENCAPAIAN & PROJECT</span></h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Project Aether-OS</h3>
+                        <p>Sistem operasi manajemen sumber daya berbasis AI yang mengoptimalkan konsumsi energi server global secara otonom.</p>
+                        <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Eksplorasi &rarr;</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Project Synapse-Code</h3>
+                        <p>Inisiatif kolaborasi masif untuk mendebug jutaan baris kode open-source demi ekosistem digital yang lebih aman.</p>
+                        <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Eksplorasi &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filosofi / Quote -->
+    <section id="philosophy">
+        <div class="container">
+            <div class="quote-section">
+                <blockquote>
+                    "Teknologi terhebat bukanlah yang menggantikan manusia, melainkan yang memperluas batas imajinasi manusia ke dimensi yang belum pernah terjamah."
+                </blockquote>
+                <cite>// MANIFESTO KECERDASAN OTONOM</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 AI Core System. Designed for the Future. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
